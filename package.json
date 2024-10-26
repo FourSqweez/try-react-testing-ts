@@ -9,7 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "json-server --watch src/data/db.json --delay 500",
-    "start": "concurrently \"npm run server\" \"npm run dev\"",
+    "start": "concurrently \"pnpm run server\" \"pnpm run dev\"",
     "test": "vitest",
     "test:ui": "vitest --ui"
   },
