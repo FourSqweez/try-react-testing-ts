@@ -397,6 +397,12 @@
       "name": "Product 1",
       "price": 10,
       "categoryId": 2
+    },
+    {
+      "id": 65,
+      "name": "Product 2",
+      "price": 10,
+      "categoryId": 2
     }
   ]
 }
