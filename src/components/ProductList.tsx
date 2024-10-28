@@ -20,6 +20,7 @@ const ProductList = () => {
         else setError("An unexpected error occurred");
       }
     };
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchProducts();
   }, []);
 
