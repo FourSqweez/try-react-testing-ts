@@ -45,8 +45,7 @@ const ProductForm = ({ product, onSubmit }: Props) => {
           setSubmitting(false);
         }
       })}
-      className="space-y-3"
-    >
+      className="space-y-3">
       <Box>
         <TextField.Root className="max-w-sm">
           <TextField.Input placeholder="Name" {...register("name")} size="3" />
@@ -73,16 +72,14 @@ const ProductForm = ({ product, onSubmit }: Props) => {
             <Select.Root
               size="3"
               defaultValue={product?.categoryId.toString() || ""}
-              onValueChange={(value) => field.onChange(+value)}
-            >
-              <Select.Trigger placeholder="Category" />
+              onValueChange={(value) => field.onChange(+value)}>
+              <Select.Trigger aria-label="Category" placeholder="Category" />
               <Select.Content>
                 <Select.Group>
                   {categories?.map((category) => (
                     <Select.Item
                       key={category.id}
-                      value={category.id.toString()}
-                    >
+                      value={category.id.toString()}>
                       {category.name}
                     </Select.Item>
                   ))}

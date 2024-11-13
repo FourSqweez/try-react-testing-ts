@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
-import CategorySelect from "../../tests/components/CategorySelect";
+import CategorySelect from "../components/CategorySelect";
 import ProductTable from "../components/ProductTable";
 
 function BrowseProducts() {
