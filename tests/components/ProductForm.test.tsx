@@ -1,4 +1,5 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it } from "vitest";
 import ProductForm from "../../src/components/ProductForm";
 import { Category, Product } from "../../src/entities";
@@ -27,6 +28,7 @@ describe("ProductForm", () => {
           nameInput: screen.getByPlaceholderText(/name/i),
           priceInput: screen.getByPlaceholderText(/price/i),
           categoryInput: screen.getByRole("combobox", { name: /category/i }),
+          submitButton: screen.getByRole("button"),
         };
       },
     };
@@ -63,5 +65,23 @@ describe("ProductForm", () => {
 
     const { nameInput } = await waitForFormToLoad();
     expect(nameInput).toHaveFocus();
+  });
+
+  it("should display an error if name is missing", async () => {
+    const { waitForFormToLoad } = renderComponent();
+
+    const form = await waitForFormToLoad();
+
+    const user = userEvent.setup();
+    await user.type(form.priceInput, "10");
+
+    await waitFor(() => user.click(form.categoryInput));
+    const options = screen.getAllByRole("option");
+    await waitFor(() => user.click(options[0]));
+    await waitFor(() => user.click(form.submitButton));
+
+    const error = screen.getByRole("alert");
+    expect(error).toBeInTheDocument();
+    expect(error).toHaveTextContent(/required/i);
   });
 });
